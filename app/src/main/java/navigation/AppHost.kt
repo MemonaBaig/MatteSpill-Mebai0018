@@ -7,10 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+
 import com.example.mattespill_mebai0018.ui.screens.GameScreen
 import com.example.mattespill_mebai0018.ui.screens.MenuScreen
 import com.example.mattespill_mebai0018.ui.screens.OmSpilletScreen
 import com.example.mattespill_mebai0018.ui.screens.PreferencesScreen
+
 
 @Composable
 fun AppNavHost(navController: NavHostController) {

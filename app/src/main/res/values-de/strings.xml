@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MatteSpill-Mebai0018</string>
+
+    <!-- Meny -->
+    <string name="menu_title">MatheSpiel</string>
+    <string name="start_game">Spiel starten</string>
+    <string name="about_game">Über das Spiel</string>
+    <string name="preferences">Einstellungen</string>
+
+    <!-- Om spillet -->
+    <string name="about_title">Über das Spiel</string>
+    <string name="about_text">
+        Dies ist ein einfaches Mathematikspiel für Kinder.\n\n
+        Du bekommst Additionsaufgaben und antwortest, indem du auf die Zahlen tippst.\n\n
+        Das Spiel gibt dir Rückmeldungen und zählt deine Punkte.
+    </string>
+    <string name="back">Zurück</string>
+
+    <!-- Spillet -->
+    <string name="task_title">Aufgabe</string>
+    <string name="your_answer">Deine Antwort:</string>
+    <string name="delete">Löschen</string>
+    <string name="check_answer">Antwort prüfen</string>
+    <string name="correct">Richtig! 🎉</string>
+    <string name="wrong">Falsch, die richtige Antwort war</string>
+    <string name="game_over">Das Spiel ist vorbei!</string>
+    <string name="score">Punkte</string>
+
+    <!-- Preferanser -->
+    <string name="prefs_title">Einstellungen</string>
+    <string name="prefs_questions">Anzahl der Aufgaben pro Spiel:</string>
+    <string name="prefs_language">Sprache wählen:</string>
+    <string name="prefs_selected_questions">Gewählt: %1$d Aufgaben</string>
+    <string name="prefs_selected_language">Sprache: %1$s</string>
+</resources>

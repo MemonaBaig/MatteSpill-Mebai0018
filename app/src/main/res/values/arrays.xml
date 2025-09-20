@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Lett: små tall -->
+    <string-array name="tasks_easy">
+        <item>1 + 2</item>
+        <item>3 + 4</item>
+        <item>2 + 5</item>
+        <item>4 + 1</item>
+        <item>3 + 6</item>
+    </string-array>
+
+    <string-array name="answers_easy">
+        <item>3</item>
+        <item>7</item>
+        <item>7</item>
+        <item>5</item>
+        <item>9</item>
+    </string-array>
+
+    <!-- Vanskelig: mellomstore tall -->
+    <string-array name="tasks_medium">
+        <item>12 + 8</item>
+        <item>15 + 7</item>
+        <item>20 + 5</item>
+        <item>14 + 9</item>
+        <item>18 + 6</item>
+    </string-array>
+
+    <string-array name="answers_medium">
+        <item>20</item>
+        <item>22</item>
+        <item>25</item>
+        <item>23</item>
+        <item>24</item>
+    </string-array>
+
+    <!-- Veldig vanskelig: store tall -->
+    <string-array name="tasks_hard">
+        <item>125 + 378</item>
+        <item>642 + 159</item>
+        <item>987 + 456</item>
+        <item>834 + 275</item>
+        <item>523 + 678</item>
+    </string-array>
+
+    <string-array name="answers_hard">
+        <item>503</item>
+        <item>801</item>
+        <item>1443</item>
+        <item>1109</item>
+        <item>1201</item>
+    </string-array>
+</resources>

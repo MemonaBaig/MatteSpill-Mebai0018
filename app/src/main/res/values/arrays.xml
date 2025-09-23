@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Lett: små tall -->
+    <!-- Lett: små tall (15 oppgaver) -->
     <string-array name="tasks_easy">
         <item>1 + 2</item>
         <item>3 + 4</item>
         <item>2 + 5</item>
         <item>4 + 1</item>
         <item>3 + 6</item>
+        <item>7 + 2</item>
+        <item>5 + 3</item>
+        <item>6 + 4</item>
+        <item>8 + 1</item>
+        <item>9 + 0</item>
+        <item>2 + 2</item>
+        <item>1 + 3</item>
+        <item>5 + 1</item>
+        <item>4 + 4</item>
+        <item>7 + 5</item>
     </string-array>
 
     <string-array name="answers_easy">
@@ -15,15 +25,30 @@
         <item>7</item>
         <item>5</item>
         <item>9</item>
+        <item>9</item>
+        <item>8</item>
+        <item>10</item>
+        <item>9</item>
+        <item>9</item>
+        <item>4</item>
+        <item>4</item>
+        <item>6</item>
+        <item>8</item>
+        <item>12</item>
     </string-array>
 
-    <!-- Vanskelig: mellomstore tall -->
+    <!-- Vanskelig: mellomstore tall (10 oppgaver) -->
     <string-array name="tasks_medium">
         <item>12 + 8</item>
         <item>15 + 7</item>
         <item>20 + 5</item>
         <item>14 + 9</item>
         <item>18 + 6</item>
+        <item>25 + 17</item>
+        <item>30 + 12</item>
+        <item>27 + 14</item>
+        <item>22 + 19</item>
+        <item>16 + 18</item>
     </string-array>
 
     <string-array name="answers_medium">
@@ -32,9 +57,14 @@
         <item>25</item>
         <item>23</item>
         <item>24</item>
+        <item>42</item>
+        <item>42</item>
+        <item>41</item>
+        <item>41</item>
+        <item>34</item>
     </string-array>
 
-    <!-- Veldig vanskelig: store tall -->
+    <!-- Veldig vanskelig: store tall (5 oppgaver) -->
     <string-array name="tasks_hard">
         <item>125 + 378</item>
         <item>642 + 159</item>

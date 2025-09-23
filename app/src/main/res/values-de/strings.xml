@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MatteSpill-Mebai0018</string>
+    <!-- App -->
+    <string name="app_name">MatheSpiel</string>
+    <string name="app_title">1 2 3 Mathe Spiel 🦉</string>
 
     <!-- Meny -->
-    <string name="menu_title">MatheSpiel</string>
     <string name="start_game">Spiel starten</string>
     <string name="about_game">Über das Spiel</string>
     <string name="preferences">Einstellungen</string>
+    <string name="best_score">⭐ Bestes Ergebnis: %1$d</string>
+    <string name="no_score">Noch kein Rekord</string>
 
     <!-- Om spillet -->
     <string name="about_title">Über das Spiel</string>
     <string name="about_text">
         Dies ist ein einfaches Mathematikspiel für Kinder.\n\n
         Du bekommst Additionsaufgaben und antwortest, indem du auf die Zahlen tippst.\n\n
-        Das Spiel gibt dir Rückmeldungen und zählt deine Punkte.
+        Das Spiel gibt dir Rückmeldungen, ob deine Antwort richtig oder falsch ist, und zählt deine Punkte.
     </string>
     <string name="back">Zurück</string>
 
-    <!-- Spillet -->
+    <!-- Spill -->
     <string name="task_title">Aufgabe</string>
     <string name="your_answer">Deine Antwort:</string>
     <string name="delete">Löschen</string>
     <string name="check_answer">Antwort prüfen</string>
-    <string name="correct">Richtig! 🎉</string>
-    <string name="wrong">Falsch, die richtige Antwort war</string>
-    <string name="game_over">Das Spiel ist vorbei!</string>
+    <string name="game_over">Spiel beendet!</string>
     <string name="score">Punkte</string>
+    <string name="next_task">Nächste Aufgabe</string>
+    <string name="best_score_label">Bestes Ergebnis: %1$d</string>
+    <string name="new_highscore">🎉 Neuer Rekord! 🎉</string>
+    <string name="not_enough_tasks">Es gibt nicht genug Aufgaben für dieses Niveau.\nWähle weniger Aufgaben in den Einstellungen.</string>
 
     <!-- Preferanser -->
     <string name="prefs_title">Einstellungen</string>
@@ -33,4 +38,23 @@
     <string name="prefs_language">Sprache wählen:</string>
     <string name="prefs_selected_questions">Gewählt: %1$d Aufgaben</string>
     <string name="prefs_selected_language">Sprache: %1$s</string>
+    <string name="prefs_difficulty">Schwierigkeitsgrad wählen:</string>
+    <string name="prefs_selected_difficulty">Gewählter Schwierigkeitsgrad: %1$s</string>
+
+    <!-- Feilmeldinger og feedback -->
+    <string name="prefs_error_tasks">Oops! Für dieses Niveau gibt es nur %1$d Aufgaben. Wähle bitte weniger 😊</string>
+    <string name="wrong_answer">Oops! Die richtige Antwort ist %1$s. Nächstes Mal schaffst du es 😊</string>
+    <string name="correct_answer">🎉 Super gemacht! %1$s = %2$s</string>
+
+
+    <!-- Vanskelighetsgrad -->
+    <string name="easy">leicht</string>
+    <string name="hard">schwer</string>
+    <string name="very_hard">sehr schwer</string>
+
+    <!-- Avslutte spill -->
+    <string name="exit_game">Spiel beenden?</string>
+    <string name="exit_game_confirm">Bist du sicher, dass du das Spiel beenden möchtest?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
 </resources>

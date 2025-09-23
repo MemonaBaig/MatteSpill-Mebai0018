@@ -1,45 +1,32 @@
 package com.example.mattespill_mebai0018.ui.screens
 
 import android.app.Activity
-import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mattespill_mebai0018.R
 import com.example.mattespill_mebai0018.setAppLocale
-
-// Nøkkelord for SharedPreferences
-private const val PREFS_NAME = "matte_prefs"
-private const val KEY_TOTAL_QUESTIONS = "total_questions"
-private const val KEY_LANGUAGE = "language"
-private const val KEY_DIFFICULTY = "difficulty"
+import com.example.mattespill_mebai0018.ui.viewmodel.PrefViewModel
 
 @Composable
 fun PreferencesScreen(onBack: () -> Unit) {
     val context = LocalContext.current
-    val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    val prefViewModel: PrefViewModel = viewModel()
 
-    // Hent lagrede verdier eller sett standard
-    var totalQuestions by remember { mutableStateOf(prefs.getInt(KEY_TOTAL_QUESTIONS, 5)) }
-    var languageCode by remember { mutableStateOf(prefs.getString(KEY_LANGUAGE, "no") ?: "no") }
-    var difficulty by remember { mutableStateOf(prefs.getString(KEY_DIFFICULTY, "lett") ?: "lett") }
+    val totalQuestions by prefViewModel.totalQuestions
+    val languageCode by prefViewModel.languageCode
+    val difficulty by prefViewModel.difficulty
 
-    // 🔹 Hent strenger fra strings.xml
-    val prefsTitle = stringResource(id = R.string.prefs_title)
-    val prefsQuestions = stringResource(id = R.string.prefs_questions)
-    val prefsLanguage = stringResource(id = R.string.prefs_language)
-    val prefsSelectedQuestions = stringResource(id = R.string.prefs_selected_questions, totalQuestions)
-    val prefsSelectedLanguage = stringResource(
-        id = R.string.prefs_selected_language,
-        if (languageCode == "no") "norsk" else "tysk"
-    )
-    val backText = stringResource(id = R.string.back)
+    var errorMessage by remember { mutableStateOf<String?>(null) }
 
     Column(
         modifier = Modifier
@@ -48,25 +35,44 @@ fun PreferencesScreen(onBack: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Text(prefsTitle, fontSize = 28.sp)
+        Text(
+            stringResource(R.string.prefs_title),
+            fontSize = 28.sp,
+            color = colorResource(id = R.color.accentOrange)
+        )
+
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Velg antall oppgaver
-        Text(prefsQuestions, fontSize = 20.sp)
-        Spacer(modifier = Modifier.height(8.dp))
+        // 🔢 Antall oppgaver
+        Text(
+            stringResource(R.string.prefs_questions),
+            fontSize = 20.sp,
+            color = colorResource(id = R.color.accentRed)
+        )
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             listOf(5, 10, 15).forEach { number ->
                 Button(
                     onClick = {
-                        totalQuestions = number
-                        prefs.edit().putInt(KEY_TOTAL_QUESTIONS, number).apply()
+                        val maxTasks = when (difficulty) {
+                            "vanskelig" -> context.resources.getStringArray(R.array.tasks_medium).size
+                            "veldig vanskelig" -> context.resources.getStringArray(R.array.tasks_hard).size
+                            else -> context.resources.getStringArray(R.array.tasks_easy).size
+                        }
+
+                        if (number > maxTasks) {
+                            errorMessage = "Opps! Det finnes bare $maxTasks oppgaver for dette nivået!"
+                        } else {
+                            errorMessage = null
+                            prefViewModel.setTotalQuestions(number)
+                        }
                     },
                     modifier = Modifier.padding(4.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = if (totalQuestions == number)
-                            MaterialTheme.colorScheme.primary
+                            colorResource(id = R.color.primaryBlue)
                         else
-                            MaterialTheme.colorScheme.secondary
+                            colorResource(id = R.color.accentYellow),
+                        contentColor = Color.Black
                     )
                 ) {
                     Text(number.toString())
@@ -74,28 +80,44 @@ fun PreferencesScreen(onBack: () -> Unit) {
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        Text(prefsSelectedQuestions)
+        Text(
+            stringResource(R.string.prefs_selected_questions, totalQuestions),
+            color = colorResource(id = R.color.owlBrown)
+        )
+
+        // 🔴 Feilmelding hvis valgt for mange oppgaver
+        if (errorMessage != null) {
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = errorMessage!!,
+                color = colorResource(id = R.color.accentRed),
+                fontSize = 16.sp
+            )
+        }
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Velg språk
-        Text(prefsLanguage, fontSize = 20.sp)
-        Spacer(modifier = Modifier.height(8.dp))
+        // 🌐 Språk
+        Text(
+            stringResource(R.string.prefs_language),
+            fontSize = 20.sp,
+            color = colorResource(id = R.color.accentRed)
+        )
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
-            listOf("norsk" to "no", "tysk" to "de").forEach { (label, code) ->
+            listOf("norsk" to "no", "deutsch" to "de").forEach { (label, code) ->
                 Button(
                     onClick = {
-                        languageCode = code
-                        prefs.edit().putString(KEY_LANGUAGE, code).apply()
+                        prefViewModel.setLanguage(code)
                         setAppLocale(context, code)
                         (context as? Activity)?.recreate()
                     },
                     modifier = Modifier.padding(4.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = if (languageCode == code)
-                            MaterialTheme.colorScheme.primary
+                            colorResource(id = R.color.primaryBlue)
                         else
-                            MaterialTheme.colorScheme.secondary
+                            colorResource(id = R.color.accentYellow),
+                        contentColor = Color.Black
                     )
                 ) {
                     Text(label)
@@ -103,44 +125,60 @@ fun PreferencesScreen(onBack: () -> Unit) {
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        Text(prefsSelectedLanguage)
+        Text(
+            stringResource(
+                R.string.prefs_selected_language,
+                if (languageCode == "no") "norsk" else "deutsch"
+            ),
+            color = colorResource(id = R.color.owlBrown)
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // 🔹 Velg vanskelighetsgrad
-        Text("Velg vanskelighetsgrad:", fontSize = 20.sp)
-        Spacer(modifier = Modifier.height(8.dp))
+        // 🎚️ Vanskelighetsgrad
+        Text(
+            stringResource(R.string.prefs_difficulty),
+            fontSize = 20.sp,
+            color = colorResource(id = R.color.accentRed)
+        )
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
-            listOf("lett", "vanskelig", "veldig vanskelig").forEach { level ->
+            listOf(
+                stringResource(R.string.easy) to "lett",
+                stringResource(R.string.hard) to "vanskelig",
+                stringResource(R.string.very_hard) to "veldig vanskelig"
+            ).forEach { (label, level) ->
                 Button(
-                    onClick = {
-                        difficulty = level
-                        prefs.edit().putString(KEY_DIFFICULTY, level).apply()
-                    },
+                    onClick = { prefViewModel.setDifficulty(level) },
                     modifier = Modifier.padding(4.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = if (difficulty == level)
-                            MaterialTheme.colorScheme.primary
+                            colorResource(id = R.color.primaryBlue)
                         else
-                            MaterialTheme.colorScheme.secondary
+                            colorResource(id = R.color.accentYellow),
+                        contentColor = Color.Black
                     )
                 ) {
-                    Text(level)
+                    Text(label)
                 }
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        Text("Valgt vanskelighetsgrad: $difficulty")
+        Text(
+            stringResource(R.string.prefs_selected_difficulty, difficulty),
+            color = colorResource(id = R.color.owlBrown)
+        )
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        Button(onClick = onBack) {
-            Text(backText)
+        // Tilbake-knapp
+        Button(
+            onClick = onBack,
+            colors = ButtonDefaults.buttonColors(
+                containerColor = colorResource(id = R.color.accentOrange),
+                contentColor = Color.White
+            )
+        ) {
+            Text(stringResource(R.string.back))
         }
     }
 }
-
-
-// husk å ha deafault verdi - vet ikke om jeg har gjort det
-// perfview model - tror prefenrecesns akl dit? idk
-// legge til biblotek

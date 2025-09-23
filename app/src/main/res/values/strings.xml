@@ -1,36 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MatteSpill-Mebai0018</string>
+    <!-- App -->
+    <string name="app_name">MatteSpill</string>
+    <string name="app_title">1 2 3 Matte Spill 🦉</string>
 
     <!-- Meny -->
-    <string name="menu_title">MatteSpill</string>
     <string name="start_game">Start spill</string>
     <string name="about_game">Om spillet</string>
     <string name="preferences">Preferanser</string>
+    <string name="best_score">⭐ Beste resultat: %1$d</string>
+    <string name="no_score">Ingen rekord ennå</string>
 
     <!-- Om spillet -->
     <string name="about_title">Om spillet</string>
     <string name="about_text">
-        Dette er et enkelt mattespill laget for barn.\n\n
-        Du får oppgaver med addisjon, og du svarer ved å trykke på tallene.\n\n
-        Spillet gir deg tilbakemelding og holder telling på poengene dine.
+     Dette er et morsomt mattespill✨
+Her kan du øve på å regne pluss-oppgaver.
+Velg vanskelighetsgrad og hvor mange oppgaver du vil løse.
+Samle poeng, slå din egen rekord og lær matte på en gøyal måte! 🎉
     </string>
     <string name="back">Tilbake</string>
 
-    <!-- Spillet -->
+    <!-- Spill -->
     <string name="task_title">Oppgave</string>
     <string name="your_answer">Ditt svar:</string>
     <string name="delete">Slett</string>
     <string name="check_answer">Sjekk svar</string>
-    <string name="correct">Riktig! 🎉</string>
-    <string name="wrong">Feil, riktig svar var</string>
     <string name="game_over">Spillet er ferdig!</string>
     <string name="score">Poeng</string>
+    <string name="next_task">Neste oppgave</string>
+    <string name="best_score_label">Beste resultat: %1$d</string>
+    <string name="new_highscore">🎉 Ny rekord! 🎉</string>
+    <string name="not_enough_tasks">Det finnes ikke nok oppgaver på dette nivået.\nVelg færre oppgaver i preferanser.</string>
+
+    <!-- Nye strengar for feedback -->
+    <string name="correct_answer">🎉 Flott jobba! %1$s = %2$s</string>
+    <string name="wrong_answer">Oops! Riktig svar er %1$s. Du får det til neste gang 😊</string>
 
     <!-- Preferanser -->
-    <string name="prefs_title">Preferanser</string>
+    <string name="prefs_title">Innstillinger</string>
     <string name="prefs_questions">Antall oppgaver per spill:</string>
     <string name="prefs_language">Velg språk:</string>
     <string name="prefs_selected_questions">Valgt: %1$d oppgaver</string>
     <string name="prefs_selected_language">Språk: %1$s</string>
+    <string name="prefs_difficulty">Velg vanskelighetsgrad:</string>
+    <string name="prefs_selected_difficulty">Valgt vanskelighetsgrad: %1$s</string>
+    <string name="prefs_error_tasks">Oops! På dette nivået finnes bare %1$d oppgaver. Velg færre 😊</string>
+
+    <!-- Vanskelighetsgrad -->
+    <string name="easy">lett</string>
+    <string name="hard">vanskelig</string>
+    <string name="very_hard">veldig vanskelig</string>
+
+    <!-- Avslutte spill -->
+    <string name="exit_game">Avslutte spill?</string>
+    <string name="exit_game_confirm">Er du sikker på at du vil avslutte spillet?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nei</string>
 </resources>

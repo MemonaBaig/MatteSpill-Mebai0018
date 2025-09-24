@@ -14,7 +14,8 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
     private val prefs = context.getSharedPreferences("matte_prefs", Context.MODE_PRIVATE)
 
     private val difficulty = prefs.getString("difficulty", "lett")
-    private val totalQuestions = prefs.getInt("total_questions", 5)
+    val totalQuestions: Int = prefs.getInt("total_questions", 5)
+
     private val _errorMessage = mutableStateOf<String?>(null)
     val errorMessage: State<String?> = _errorMessage
 

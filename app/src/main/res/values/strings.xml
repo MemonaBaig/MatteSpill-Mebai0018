@@ -57,4 +57,6 @@ Samle poeng, slå din egen rekord og lær matte på en gøyal måte! 🎉
     <string name="exit_game_confirm">Er du sikker på at du vil avslutte spillet?</string>
     <string name="yes">Ja</string>
     <string name="no">Nei</string>
+    <string name="play_again">Spill igjen</string>
+
 </resources>

@@ -10,11 +10,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mattespill_mebai0018.R
+import com.example.mattespill_mebai0018.ui.components.BackButton
 
 @Composable
 fun OmSpilletScreen(onBack: () -> Unit) {
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
@@ -23,6 +26,7 @@ fun OmSpilletScreen(onBack: () -> Unit) {
             fontSize = 28.sp,
             color = colorResource(id = R.color.accentOrange)
         )
+
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
@@ -33,13 +37,7 @@ fun OmSpilletScreen(onBack: () -> Unit) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        Button(
-            onClick = onBack,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.primaryBlue)
-            )
-        ) {
-            Text(stringResource(R.string.back))
-        }
+        // 🔹 Bruk BackButton fra components (ingen ekstra kode trengs)
+        BackButton(onClick = onBack)
     }
 }

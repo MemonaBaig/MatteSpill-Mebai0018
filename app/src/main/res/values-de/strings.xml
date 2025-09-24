@@ -57,4 +57,6 @@
     <string name="exit_game_confirm">Bist du sicher, dass du das Spiel beenden möchtest?</string>
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
+    <string name="play_again">Nochmal spielen</string>
+
 </resources>

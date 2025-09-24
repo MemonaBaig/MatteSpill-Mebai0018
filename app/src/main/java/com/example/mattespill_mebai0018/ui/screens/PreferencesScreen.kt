@@ -6,7 +6,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
@@ -16,6 +15,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mattespill_mebai0018.R
 import com.example.mattespill_mebai0018.setAppLocale
 import com.example.mattespill_mebai0018.ui.viewmodel.PrefViewModel
+import com.example.mattespill_mebai0018.ui.components.BackButton
+import com.example.mattespill_mebai0018.ui.components.SelectableButton
 
 @Composable
 fun PreferencesScreen(onBack: () -> Unit) {
@@ -51,7 +52,9 @@ fun PreferencesScreen(onBack: () -> Unit) {
         )
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             listOf(5, 10, 15).forEach { number ->
-                Button(
+                SelectableButton(
+                    text = number.toString(),
+                    isSelected = totalQuestions == number,
                     onClick = {
                         val maxTasks = when (difficulty) {
                             "vanskelig" -> context.resources.getStringArray(R.array.tasks_medium).size
@@ -65,18 +68,8 @@ fun PreferencesScreen(onBack: () -> Unit) {
                             errorMessage = null
                             prefViewModel.setTotalQuestions(number)
                         }
-                    },
-                    modifier = Modifier.padding(4.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (totalQuestions == number)
-                            colorResource(id = R.color.primaryBlue)
-                        else
-                            colorResource(id = R.color.accentYellow),
-                        contentColor = Color.Black
-                    )
-                ) {
-                    Text(number.toString())
-                }
+                    }
+                )
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -85,7 +78,6 @@ fun PreferencesScreen(onBack: () -> Unit) {
             color = colorResource(id = R.color.owlBrown)
         )
 
-        // 🔴 Feilmelding hvis valgt for mange oppgaver
         if (errorMessage != null) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -105,23 +97,15 @@ fun PreferencesScreen(onBack: () -> Unit) {
         )
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             listOf("norsk" to "no", "deutsch" to "de").forEach { (label, code) ->
-                Button(
+                SelectableButton(
+                    text = label,
+                    isSelected = languageCode == code,
                     onClick = {
                         prefViewModel.setLanguage(code)
                         setAppLocale(context, code)
                         (context as? Activity)?.recreate()
-                    },
-                    modifier = Modifier.padding(4.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (languageCode == code)
-                            colorResource(id = R.color.primaryBlue)
-                        else
-                            colorResource(id = R.color.accentYellow),
-                        contentColor = Color.Black
-                    )
-                ) {
-                    Text(label)
-                }
+                    }
+                )
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -147,19 +131,11 @@ fun PreferencesScreen(onBack: () -> Unit) {
                 stringResource(R.string.hard) to "vanskelig",
                 stringResource(R.string.very_hard) to "veldig vanskelig"
             ).forEach { (label, level) ->
-                Button(
-                    onClick = { prefViewModel.setDifficulty(level) },
-                    modifier = Modifier.padding(4.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = if (difficulty == level)
-                            colorResource(id = R.color.primaryBlue)
-                        else
-                            colorResource(id = R.color.accentYellow),
-                        contentColor = Color.Black
-                    )
-                ) {
-                    Text(label)
-                }
+                SelectableButton(
+                    text = label,
+                    isSelected = difficulty == level,
+                    onClick = { prefViewModel.setDifficulty(level) }
+                )
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -170,15 +146,7 @@ fun PreferencesScreen(onBack: () -> Unit) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Tilbake-knapp
-        Button(
-            onClick = onBack,
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.accentOrange),
-                contentColor = Color.White
-            )
-        ) {
-            Text(stringResource(R.string.back))
-        }
+        // 🔙 Tilbake-knapp
+        BackButton(onClick = onBack)
     }
 }

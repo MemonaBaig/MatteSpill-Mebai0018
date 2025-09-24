@@ -1,3 +1,4 @@
+
 package com.example.mattespill_mebai0018.ui.screens
 
 import android.content.Context
@@ -16,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mattespill_mebai0018.R
+import com.example.mattespill_mebai0018.ui.components.AppButton   // 👈 viktig
 
 @Composable
 fun MenuScreen(
@@ -28,10 +30,13 @@ fun MenuScreen(
     val highscore = prefs.getInt("highscore", 0)
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(32.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        // 🔹 App-tittel
         Text(
             stringResource(R.string.app_title),
             fontSize = 36.sp,
@@ -40,6 +45,7 @@ fun MenuScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
+        // 🔹 Highscore
         if (highscore > 0) {
             Text(
                 stringResource(R.string.best_score, highscore),
@@ -56,54 +62,28 @@ fun MenuScreen(
 
         Spacer(modifier = Modifier.height(40.dp))
 
-        // Start spill-knapp
-        Button(
-            onClick = onStartClick,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.primaryBlue)
-            )
-        ) {
-            Icon(Icons.Default.PlayArrow, contentDescription = stringResource(R.string.start_game))
-            Spacer(Modifier.width(8.dp))
-            Text(stringResource(R.string.start_game), fontSize = 20.sp)
-        }
+        // 🔹 Meny-knapper (nå med AppButton fra components)
+        AppButton(
+            text = stringResource(R.string.start_game),
+            icon = Icons.Default.PlayArrow,
+            color = colorResource(id = R.color.primaryBlue),
+            onClick = onStartClick
+        )
 
-        // Om spillet-knapp
-        Button(
-            onClick = onAboutClick,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.accentYellow)
-            )
-        ) {
-            Icon(Icons.Default.Info, contentDescription = stringResource(R.string.about_game))
-            Spacer(Modifier.width(8.dp))
-            Text(stringResource(R.string.about_game), fontSize = 20.sp)
-        }
+        AppButton(
+            text = stringResource(R.string.about_game),
+            icon = Icons.Default.Info,
+            color = colorResource(id = R.color.accentYellow),
+            onClick = onAboutClick
+        )
 
-        // Preferanser-knapp
-        Button(
-            onClick = onPrefsClick,
-            modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = colorResource(id = R.color.accentOrange)
-            )
-        ) {
-            Icon(Icons.Default.Settings, contentDescription = stringResource(R.string.preferences))
-            Spacer(Modifier.width(8.dp))
-            Text(stringResource(R.string.preferences), fontSize = 20.sp)
-        }
+        AppButton(
+            text = stringResource(R.string.preferences),
+            icon = Icons.Default.Settings,
+            color = colorResource(id = R.color.accentOrange),
+            onClick = onPrefsClick
+        )
     }
 }
 
 
-//Bruk av skerjemn, bevisst på fargevalg - vise forskjelliger og ulike funksjoner
-// Ikke mye tekst - prøv å lage bedre knapper - bruk mer av skjermen , større knapper
-//Større ikon
-// trenger ikke skrive oppgave 1 - ditt svar - trenger ikke være, tekstfelt, tydelig å skrive inn noe
-// oppgavene tallene bør ta mer plass, 0 trenger ikke mer plass
-// bevisst forhold til hvordan man bruker skjermbildet, ta med uglen under hele spillet
-// ditt svar- trenger ikke det, svarstallet må bli større
-// lage kompoent mappe , gå igjennom filer for å komponenter fra alle skjermbilder
-// lage tekstsfelt , skjermting for seg selv, ..

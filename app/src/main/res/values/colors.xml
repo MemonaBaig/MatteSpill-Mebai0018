@@ -5,6 +5,8 @@
     <color name="accentOrange">#FB8C00</color>  <!-- Oransje -->
     <color name="accentYellow">#FDD835</color>  <!-- Gul -->
     <color name="owlBrown">#8D6E63</color>      <!-- Brun -->
+    <color name="green">#4CAF50</color>         <!-- Grønn -->
+
 
 
 </resources>

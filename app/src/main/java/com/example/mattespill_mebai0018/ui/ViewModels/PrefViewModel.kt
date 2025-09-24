@@ -44,6 +44,3 @@ class PrefViewModel(application: Application) : AndroidViewModel(application) {
 
 
 
-// Putte ting i kompoennterer- ting man kan gjenbruke kan ligge der
-//sjekk med farger om de kan flyttes
-//

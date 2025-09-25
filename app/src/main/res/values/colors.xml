@@ -7,6 +7,16 @@
     <color name="owlBrown">#8D6E63</color>      <!-- Brun -->
     <color name="green">#4CAF50</color>         <!-- Grønn -->
 
+    <color name="turquoise">#4DD0E1</color>
+    <color name="softRed">#E57373</color>
+    <color name="brightOrange">#FB8C00</color>
+    <color name="violet">#BA68C8</color>
+    <color name="freshGreen">#66BB6A</color>
+    <color name="skyBlue">#42A5F5</color>
+    <color name="rose">#F06292</color>
+    <color name="indigo">#5C6BC0</color>
+    <color name="aquaBlue">#29B6F6</color>
+    <color name="limeGreen">#9CCC65</color>
 
 
 </resources>

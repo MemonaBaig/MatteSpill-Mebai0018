@@ -17,7 +17,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mattespill_mebai0018.R
-import com.example.mattespill_mebai0018.ui.components.AppButton   // 👈 viktig
+import com.example.mattespill_mebai0018.ui.components.AppButton
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+
 
 @Composable
 fun MenuScreen(
@@ -34,56 +37,79 @@ fun MenuScreen(
             .fillMaxSize()
             .padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.SpaceBetween // 👈 sprer innholdet ut
     ) {
-        // 🔹 App-tittel
-        Text(
-            stringResource(R.string.app_title),
-            fontSize = 36.sp,
-            color = colorResource(id = R.color.accentOrange)
+        // 🦉 Uglen øverst
+        Image(
+            painter = painterResource(id = R.drawable.owl),
+            contentDescription = "Uglen",
+            modifier = Modifier
+                .size(300.dp) // gjør uglen stor
+                .padding(top = 16.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        // 🔹 Highscore
-        if (highscore > 0) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            // 🔹 App-tittel
             Text(
-                stringResource(R.string.best_score, highscore),
-                fontSize = 20.sp,
-                color = colorResource(id = R.color.primaryBlue)
+                stringResource(R.string.app_title),
+                fontSize = 40.sp,
+                color = colorResource(id = R.color.accentOrange)
             )
-        } else {
-            Text(
-                stringResource(R.string.no_score),
-                fontSize = 20.sp,
-                color = colorResource(id = R.color.accentYellow)
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // 🔹 Highscore
+            if (highscore > 0) {
+                Text(
+                    stringResource(R.string.best_score, highscore),
+                    fontSize = 22.sp,
+                    color = colorResource(id = R.color.primaryBlue)
+                )
+            } else {
+                Text(
+                    stringResource(R.string.no_score),
+                    fontSize = 22.sp,
+                    color = colorResource(id = R.color.accentYellow)
+                )
+            }
+
+            Spacer(modifier = Modifier.height(40.dp))
+
+            // 🔹 Meny-knapper (nå større)
+            AppButton(
+                text = stringResource(R.string.start_game),
+                icon = Icons.Default.PlayArrow,
+                color = colorResource(id = R.color.primaryBlue),
+                onClick = onStartClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp) // 👈 større knapp
+            )
+
+            AppButton(
+                text = stringResource(R.string.about_game),
+                icon = Icons.Default.Info,
+                color = colorResource(id = R.color.accentYellow),
+                onClick = onAboutClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
+            )
+
+            AppButton(
+                text = stringResource(R.string.preferences),
+                icon = Icons.Default.Settings,
+                color = colorResource(id = R.color.accentOrange),
+                onClick = onPrefsClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(80.dp)
             )
         }
 
-        Spacer(modifier = Modifier.height(40.dp))
-
-        // 🔹 Meny-knapper (nå med AppButton fra components)
-        AppButton(
-            text = stringResource(R.string.start_game),
-            icon = Icons.Default.PlayArrow,
-            color = colorResource(id = R.color.primaryBlue),
-            onClick = onStartClick
-        )
-
-        AppButton(
-            text = stringResource(R.string.about_game),
-            icon = Icons.Default.Info,
-            color = colorResource(id = R.color.accentYellow),
-            onClick = onAboutClick
-        )
-
-        AppButton(
-            text = stringResource(R.string.preferences),
-            icon = Icons.Default.Settings,
-            color = colorResource(id = R.color.accentOrange),
-            onClick = onPrefsClick
-        )
+        Spacer(modifier = Modifier.height(20.dp))
     }
 }
-
-

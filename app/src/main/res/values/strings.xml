@@ -2,7 +2,7 @@
 <resources>
     <!-- App -->
     <string name="app_name">MatteSpill</string>
-    <string name="app_title">1 2 3 Matte Spill 🦉</string>
+    <string name="app_title">1 2 3 Matte Spill </string>
 
     <!-- Meny -->
     <string name="start_game">Start spill</string>

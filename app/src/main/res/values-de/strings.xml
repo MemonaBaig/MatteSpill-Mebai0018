@@ -2,7 +2,7 @@
 <resources>
     <!-- App -->
     <string name="app_name">MatheSpiel</string>
-    <string name="app_title">1 2 3 Mathe Spiel 🦉</string>
+    <string name="app_title">1 2 3 Mathe Spiel </string>
 
     <!-- Meny -->
     <string name="start_game">Spiel starten</string>

@@ -21,9 +21,16 @@ import androidx.compose.ui.graphics.vector.ImageVector
 @Composable
 fun RowScope.AnswerButton(digit: String, onClick: (String) -> Unit) {
     val buttonColor = when (digit) {
-        "1", "4", "7" -> colorResource(id = R.color.primaryBlue)
-        "2", "5", "8" -> colorResource(id = R.color.accentYellow)
-        "3", "6", "9", "0" -> colorResource(id = R.color.accentOrange)
+        "0" -> colorResource(id = R.color.turquoise)
+        "1" -> colorResource(id = R.color.indigo)
+        "2" -> colorResource(id = R.color.brightOrange)
+        "3" -> colorResource(id = R.color.aquaBlue)
+        "4" -> colorResource(id = R.color.violet)
+        "5" -> colorResource(id = R.color.skyBlue)
+        "6" -> colorResource(id = R.color.freshGreen)
+        "7" -> colorResource(id = R.color.softRed)
+        "8" -> colorResource(id = R.color.freshGreen)
+        "9" -> colorResource(id = R.color.rose)
         else -> colorResource(id = R.color.primaryBlue)
     }
 
@@ -35,12 +42,13 @@ fun RowScope.AnswerButton(digit: String, onClick: (String) -> Unit) {
             .height(80.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = buttonColor,
-            contentColor = Color.Black // svart talltekst → tydelig kontrast
+            contentColor = Color.White
         )
     ) {
         Text(digit, fontSize = 28.sp)
     }
 }
+
 
 
 
@@ -156,19 +164,30 @@ fun SelectableButton(
     isSelected: Boolean,
     onClick: () -> Unit,
     selectedColor: Color = colorResource(id = R.color.primaryBlue),
-    defaultColor: Color = colorResource(id = R.color.accentYellow)
+    defaultColor: Color = colorResource(id = R.color.accentYellow),
+    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier.padding(4.dp),
+        modifier = modifier
+            .padding(6.dp)
+            .fillMaxWidth()
+            .height(70.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = if (isSelected) selectedColor else defaultColor,
             contentColor = Color.Black
         )
     ) {
-        Text(text)
+        Text(
+            text,
+            fontSize = 22.sp // større tekst
+        )
     }
 }
+
+
+
+
 
 
 
@@ -187,3 +206,25 @@ fun NextTaskButton(onClick: () -> Unit) {
         Text(stringResource(R.string.next_task), fontSize = 20.sp)
     }
 }
+
+@Composable
+fun AppButton(
+    text: String,
+    icon: ImageVector,
+    color: Color,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier // 👈 NY linje
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 8.dp),
+        colors = ButtonDefaults.buttonColors(containerColor = color)
+    ) {
+        Icon(icon, contentDescription = text)
+        Spacer(Modifier.width(8.dp))
+        Text(text, fontSize = 20.sp)
+    }
+}
+

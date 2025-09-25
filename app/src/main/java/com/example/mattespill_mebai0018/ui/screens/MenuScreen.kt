@@ -21,7 +21,6 @@ import com.example.mattespill_mebai0018.ui.components.AppButton
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
 
-
 @Composable
 fun MenuScreen(
     onStartClick: () -> Unit,
@@ -37,14 +36,14 @@ fun MenuScreen(
             .fillMaxSize()
             .padding(32.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceBetween // 👈 sprer innholdet ut
+        verticalArrangement = Arrangement.SpaceBetween // Sprer innholdet ut
     ) {
-        // 🦉 Uglen øverst
+        // Ugle-ikon øverst
         Image(
             painter = painterResource(id = R.drawable.owl),
             contentDescription = "Uglen",
             modifier = Modifier
-                .size(300.dp) // gjør uglen stor
+                .size(300.dp) // Stor ugle
                 .padding(top = 16.dp)
         )
 
@@ -52,7 +51,7 @@ fun MenuScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // 🔹 App-tittel
+            // App-tittel
             Text(
                 stringResource(R.string.app_title),
                 fontSize = 40.sp,
@@ -61,7 +60,7 @@ fun MenuScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 🔹 Highscore
+            // Highscore
             if (highscore > 0) {
                 Text(
                     stringResource(R.string.best_score, highscore),
@@ -78,7 +77,7 @@ fun MenuScreen(
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // 🔹 Meny-knapper (nå større)
+            // Meny-knapper
             AppButton(
                 text = stringResource(R.string.start_game),
                 icon = Icons.Default.PlayArrow,
@@ -86,7 +85,7 @@ fun MenuScreen(
                 onClick = onStartClick,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(80.dp) // 👈 større knapp
+                    .height(80.dp) // Store knapper
             )
 
             AppButton(

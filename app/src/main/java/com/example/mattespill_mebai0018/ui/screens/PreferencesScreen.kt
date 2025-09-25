@@ -40,9 +40,9 @@ fun PreferencesScreen(onBack: () -> Unit) {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
-            // 👇 Mer luft på toppen
             Spacer(modifier = Modifier.height(40.dp))
 
+            // Skjermtittel
             Text(
                 stringResource(R.string.prefs_title),
                 fontSize = 34.sp,
@@ -51,7 +51,7 @@ fun PreferencesScreen(onBack: () -> Unit) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            // 🔢 Antall oppgaver
+            // Antall oppgaver
             Text(
                 stringResource(R.string.prefs_questions),
                 fontSize = 24.sp,
@@ -78,14 +78,16 @@ fun PreferencesScreen(onBack: () -> Unit) {
                                 else -> context.resources.getStringArray(R.array.tasks_easy).size
                             }
                             if (number > maxTasks) {
-                                errorMessage = "Opps! Det finnes bare $maxTasks oppgaver for dette nivået!"
+                                errorMessage = context.getString(R.string.prefs_error_tasks, maxTasks)
                             } else {
                                 errorMessage = null
                                 prefViewModel.setTotalQuestions(number)
                             }
                         },
                         selectedColor = colorResource(id = color),
-                        modifier = Modifier.weight(1f).height(70.dp)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(70.dp)
                     )
                 }
             }
@@ -97,10 +99,10 @@ fun PreferencesScreen(onBack: () -> Unit) {
                 color = colorResource(id = R.color.owlBrown)
             )
 
-            if (errorMessage != null) {
+            errorMessage?.let {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = errorMessage!!,
+                    text = it,
                     color = colorResource(id = R.color.accentRed),
                     fontSize = 18.sp
                 )
@@ -108,7 +110,7 @@ fun PreferencesScreen(onBack: () -> Unit) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // 🌐 Språk
+            // Språkvalg
             Text(
                 stringResource(R.string.prefs_language),
                 fontSize = 24.sp,
@@ -129,14 +131,16 @@ fun PreferencesScreen(onBack: () -> Unit) {
                             setAppLocale(context, code)
                             (context as? Activity)?.recreate()
                         },
-                        modifier = Modifier.weight(1f).height(70.dp)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(70.dp)
                     )
                 }
             }
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // 🎚️ Vanskelighetsgrad
+            // Vanskelighetsgrad
             Text(
                 stringResource(R.string.prefs_difficulty),
                 fontSize = 24.sp,
@@ -159,7 +163,9 @@ fun PreferencesScreen(onBack: () -> Unit) {
                         isSelected = difficulty == level,
                         onClick = { prefViewModel.setDifficulty(level) },
                         selectedColor = colorResource(id = color),
-                        modifier = Modifier.fillMaxWidth().height(70.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(70.dp)
                     )
                 }
             }
@@ -169,7 +175,7 @@ fun PreferencesScreen(onBack: () -> Unit) {
             BackButton(onClick = onBack)
         }
 
-        // 🦉 Uglen nederst
+        // Ugle nederst
         Image(
             painter = painterResource(id = R.drawable.owl),
             contentDescription = "Uglen",

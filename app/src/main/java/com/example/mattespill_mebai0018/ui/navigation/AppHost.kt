@@ -16,10 +16,12 @@ import com.example.mattespill_mebai0018.ui.screens.PreferencesScreen
 
 @Composable
 fun AppNavHost(navController: NavHostController) {
+    // 🔹 Definerer navigasjonen mellom skjermene i appen
     NavHost(
         navController = navController,
-        startDestination = Screen.Menu.route
+        startDestination = Screen.Menu.route // Startskjerm = meny
     ) {
+        // Meny-skjermen
         composable(Screen.Menu.route) {
             MenuScreen(
                 onStartClick = { navController.navigate(Screen.Game.route) },
@@ -27,12 +29,18 @@ fun AppNavHost(navController: NavHostController) {
                 onPrefsClick = { navController.navigate(Screen.Preferences.route) }
             )
         }
+
+        // Spill-skjermen
         composable(Screen.Game.route) {
             GameScreen(onBack = { navController.popBackStack() })
         }
+
+        // Om spillet-skjermen
         composable(Screen.About.route) {
             OmSpilletScreen(onBack = { navController.popBackStack() })
         }
+
+        // Preferanser-skjermen
         composable(Screen.Preferences.route) {
             PreferencesScreen(onBack = { navController.popBackStack() })
         }

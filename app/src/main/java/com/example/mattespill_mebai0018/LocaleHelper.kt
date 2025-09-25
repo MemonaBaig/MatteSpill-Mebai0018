@@ -4,6 +4,9 @@ import android.content.Context
 import android.os.Build
 import java.util.*
 
+
+// Endrer språk på appen basert på valgt språk-kode
+
 fun setAppLocale(context: Context, language: String): Context {
     val locale = Locale(language)
     Locale.setDefault(locale)

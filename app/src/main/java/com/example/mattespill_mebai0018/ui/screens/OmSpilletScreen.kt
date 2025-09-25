@@ -14,6 +14,9 @@ import androidx.compose.ui.unit.sp
 import com.example.mattespill_mebai0018.R
 import com.example.mattespill_mebai0018.ui.components.BackButton
 
+
+// Viser "Om spillet"-skjermen med tittel, beskrivende tekst, tilbakeknapp og uglebilde nederst
+
 @Composable
 fun OmSpilletScreen(onBack: () -> Unit) {
     Column(
@@ -25,7 +28,7 @@ fun OmSpilletScreen(onBack: () -> Unit) {
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(top = 80.dp) // 👈 dytt ned hele innholdet
+            modifier = Modifier.padding(top = 80.dp)
         ) {
             Text(
                 stringResource(R.string.about_title),
@@ -46,7 +49,9 @@ fun OmSpilletScreen(onBack: () -> Unit) {
             BackButton(onClick = onBack)
         }
 
-        // 🦉 Stor ugle nederst
+
+
+        //  Stor ugle nederst
         Image(
             painter = painterResource(id = R.drawable.owl),
             contentDescription = "Uglen",

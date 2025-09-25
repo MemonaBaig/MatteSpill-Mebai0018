@@ -16,8 +16,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
-
-// 🔢 Tallknapp
+// Tallknapp til tastaturet
 @Composable
 fun RowScope.AnswerButton(digit: String, onClick: (String) -> Unit) {
     val buttonColor = when (digit) {
@@ -49,23 +48,18 @@ fun RowScope.AnswerButton(digit: String, onClick: (String) -> Unit) {
     }
 }
 
-
-
-
-
-
-// 🌟 Generisk knapp til menyen
-
+// Generisk knapp brukt i menyen
 @Composable
 fun AppButton(
     text: String,
     icon: ImageVector,
     color: Color,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = onClick,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         colors = ButtonDefaults.buttonColors(containerColor = color)
@@ -76,9 +70,7 @@ fun AppButton(
     }
 }
 
-
-
-// 🔢 Tall-knapp-grid
+// Tallknapp-grid (hvis du vil bruke dette i stedet for å bygge manuelt i GameScreen)
 @Composable
 fun AnswerPad(onDigitClick: (String) -> Unit) {
     Column {
@@ -102,7 +94,7 @@ fun AnswerPad(onDigitClick: (String) -> Unit) {
     }
 }
 
-// ✔️ Sjekk svar
+// Sjekk svar-knapp
 @Composable
 fun CheckAnswerButton(onClick: () -> Unit) {
     Button(
@@ -111,7 +103,7 @@ fun CheckAnswerButton(onClick: () -> Unit) {
             .fillMaxWidth()
             .height(60.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = colorResource(id = R.color.green), // 👈 Nå fungerer dette
+            containerColor = colorResource(id = R.color.green),
             contentColor = Color.White
         )
     ) {
@@ -119,9 +111,7 @@ fun CheckAnswerButton(onClick: () -> Unit) {
     }
 }
 
-
-
-// ❌ Slett knapp
+// Slett-knapp
 @Composable
 fun DeleteButton(onClick: () -> Unit) {
     Button(
@@ -137,8 +127,7 @@ fun DeleteButton(onClick: () -> Unit) {
     }
 }
 
-
-// ❌ Tilbake-knapp
+// Tilbake-knapp
 @Composable
 fun BackButton(onClick: () -> Unit) {
     Button(
@@ -156,8 +145,7 @@ fun BackButton(onClick: () -> Unit) {
     }
 }
 
-
-//Velg knapp
+// Velg-knapp (brukes i preferanser)
 @Composable
 fun SelectableButton(
     text: String,
@@ -178,20 +166,11 @@ fun SelectableButton(
             contentColor = Color.Black
         )
     ) {
-        Text(
-            text,
-            fontSize = 22.sp // større tekst
-        )
+        Text(text, fontSize = 22.sp)
     }
 }
 
-
-
-
-
-
-
-// ⏭️ Neste oppgave
+// Neste oppgave-knapp
 @Composable
 fun NextTaskButton(onClick: () -> Unit) {
     Button(
@@ -206,25 +185,3 @@ fun NextTaskButton(onClick: () -> Unit) {
         Text(stringResource(R.string.next_task), fontSize = 20.sp)
     }
 }
-
-@Composable
-fun AppButton(
-    text: String,
-    icon: ImageVector,
-    color: Color,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier // 👈 NY linje
-) {
-    Button(
-        onClick = onClick,
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
-        colors = ButtonDefaults.buttonColors(containerColor = color)
-    ) {
-        Icon(icon, contentDescription = text)
-        Spacer(Modifier.width(8.dp))
-        Text(text, fontSize = 20.sp)
-    }
-}
-

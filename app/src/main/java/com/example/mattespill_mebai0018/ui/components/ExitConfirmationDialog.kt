@@ -6,6 +6,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.colorResource
 import com.example.mattespill_mebai0018.R
 
+
+// Viser en bekreftelsesdialog når brukeren prøver å avslutte spillet
 @Composable
 fun ExitConfirmationDialog(
     show: Boolean,
